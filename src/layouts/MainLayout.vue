@@ -1,5 +1,10 @@
 <template>
-  <Navbar />
+  <header>
+    <Navbar></Navbar>
+  </header>
+  <section class="layout-flex">
+    <router-view />
+  </section>
 </template>
 
 <style lang="sass">
