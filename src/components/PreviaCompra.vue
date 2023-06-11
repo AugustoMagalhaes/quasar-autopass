@@ -7,28 +7,7 @@
       class="cartao-icone"
     />
   </section>
-  <footer class="botoes-footer-compra">
-    <router-link
-      to="/produtos"
-      class="botao-link-nav"
-    >
-      <q-icon
-        name="arrow_left"
-        class="border-circle"
-      />
-      Voltar
-    </router-link>
-    <router-link
-      to="/"
-      class="botao-link-nav"
-    >
-      <q-icon
-        name="close"
-        class="border-circle"
-      />
-      Cancelar
-    </router-link>
-  </footer>
+  <FooterNav></FooterNav>
 </template>
 
 <style lang="sass">
@@ -39,18 +18,15 @@
 
 .cartao-icone
   width: 25%
-
-.botoes-footer-compra
-  display: flex
-  width: 75%
-  justify-content: space-between
 </style>
 
 <script>
 import { defineComponent } from 'vue';
+import FooterNav from './FooterNav.vue';
+
 export default defineComponent({
   name: 'PreviaCompra',
-  components: {},
+  components: { FooterNav },
   props: {
     tipoPagamento: {
       type: String,
