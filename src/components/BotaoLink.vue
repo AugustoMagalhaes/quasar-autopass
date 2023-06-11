@@ -3,6 +3,7 @@
     <q-btn
       :label="textoBotao"
       :class="ComputedClasse"
+      @click="redirecionaCompra"
     >
     </q-btn>
   </router-link>
@@ -28,12 +29,32 @@ export default {
       type: String,
       required: false,
     },
+    tipoPagamento: {
+      type: String,
+      required: true,
+    },
   },
   computed: {
     ComputedClasse() {
       let classes = {};
       classes[this.classe] = true;
       return classes;
+    },
+  },
+  methods: {
+    redirecionaCompra() {
+      console.log('NOVA ROTA??? ', this.novaRota);
+      console.log('Tipo Pagamento??? ', this.tipoPagamento);
+      if (['cartao-top', 'bilhete-unico'].includes(this.tipoPagamento)) {
+        this.$router.push({
+          name: 'compra',
+          params: {
+            tipoPagamento: this.tipoPagamento,
+          },
+        });
+      } else {
+        this.$router.push(this.novaRota);
+      }
     },
   },
 };

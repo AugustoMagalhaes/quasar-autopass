@@ -8,6 +8,7 @@
         :textoBotao="botao.textoBotao"
         :novaRota="botao.novaRota"
         :classe="'botao-link-produto'"
+        :tipoPagamento="botao.tipoPagamento"
       />
     </div>
     <footer class="botoes-footer">
@@ -43,15 +44,18 @@ export default defineComponent({
       botoes: [
         {
           textoBotao: 'Cartão TOP',
-          novaRota: '/cartao-top',
+          novaRota: '/compra/cartao-top',
+          tipoPagamento: 'Cartão TOP',
         },
         {
           textoBotao: 'Bilhete Único',
-          novaRota: '/bilhete-unico',
+          novaRota: '/compra/bilhete-unico',
+          tipoPagamento: 'bilhete-unico',
         },
         {
           textoBotao: 'Unitário',
           novaRota: '/unitário',
+          tipoPagamento: 'unitario',
         },
       ],
     };
