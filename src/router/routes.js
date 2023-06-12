@@ -3,6 +3,7 @@ import MainLayout from '../layouts/MainLayout.vue';
 import IndexPage from '../pages/IndexPage.vue';
 import ProdutosPage from '../pages/Produtos.vue';
 import CompraPage from '../pages/Compra.vue';
+import PagamentoCompra from '../pages/PagamentoCompra.vue';
 
 const routes = [
   {
@@ -20,6 +21,15 @@ const routes = [
     name: 'compra',
     component: MainLayout,
     children: [
+      {
+        path: 'pagamento',
+        name: 'pagamento',
+        component: PagamentoCompra,
+        props: (route) => ({
+          tipoPagamento: route.params.tipoPagamento,
+          preco: route.query.preco,
+        }),
+      },
       {
         path: '',
         component: CompraPage,

@@ -180,10 +180,14 @@ export default defineComponent({
   },
   watch: {
     preco(novoValor) {
-      console.log('novo Preco: ', novoValor); // Logging the updated state value
+      console.log('novo Preco: ', novoValor);
+
       if (novoValor !== null) {
         setTimeout(() => {
-          this.$router.push({ path: '/pagamento', query: { preco: novoValor } });
+          this.$router.push({
+            name: 'pagamento',
+            query: { preco: novoValor },
+          });
         }, 2000);
       }
     },
