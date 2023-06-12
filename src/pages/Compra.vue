@@ -3,14 +3,16 @@
     v-if="!pagamentoInserido"
     :tipoPagamento="parseiaRotaPagamento()"
   ></PreviaCompra>
+  <Pagamentos v-if="pagamentoInserido"></Pagamentos>
 </template>
 
 <script>
 import PreviaCompra from 'src/components/PreviaCompra.vue';
+import Pagamentos from './Pagamentos.vue';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   name: 'CompraPage',
-  components: { PreviaCompra },
+  components: { PreviaCompra, Pagamentos },
   setup() {
     const pagamentoInserido = ref(false);
 
