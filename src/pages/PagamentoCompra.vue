@@ -22,7 +22,12 @@
     <h1>Opção {{ this.formaEscolhida }} Selecionado!</h1>
   </section>
   <section
-    v-else-if="this.formaEscolhida && this.inserirOpcao && !this.loading"
+    v-else-if="
+      this.formaEscolhida &&
+      this.formaEscolhida !== 'Pix' &&
+      this.inserirOpcao &&
+      !this.loading
+    "
     class="inserir-container"
   >
     <h1>Insira o {{ this.formaEscolhida }}</h1>
@@ -37,14 +42,47 @@
       Não há devolução de troco
     </h3>
   </section>
-  <section v-else-if="this.formaEscolhida && this.inserirOpcao && this.loading">
-    <h1 v-if="!this.pagamentoEfetuado">Aguarde...</h1>
+
+  <section
+    v-else-if="
+      this.formaEscolhida &&
+      this.inserirOpcao &&
+      this.loading &&
+      this.formaEscolhida !== 'Pix'
+    "
+  >
+    <h1 v-if="!this.pagamentoEfetuado">
+      Aguarde {{ this.formaEscolhida === 'Pix' ? 'geração do QR code' : '' }}...
+    </h1>
+
     <section
       v-else-if="this.pagamentoEfetuado"
       class="pagamento-efetuado-container"
     >
       <h1 style="margin-bottom: 60px">Transação Concluída</h1>
       <h4>Aguarde impressão do Comprovante</h4>
+    </section>
+  </section>
+  <section
+    v-else-if="
+      this.formaEscolhida &&
+      this.inserirOpcao &&
+      this.loading &&
+      this.formaEscolhida === 'Pix'
+    "
+  >
+    <h1 v-if="!this.pagamentoEfetuado">
+      Aguarde {{ this.formaEscolhida === 'Pix' ? 'geração do QR code' : '' }}...
+    </h1>
+    <section
+      v-else-if="this.pagamentoEfetuado"
+      class="pagamento-efetuado-container"
+    >
+      <h1 style="margin-bottom: 60px">Transação Concluída</h1>
+      <h4>Aguarde impressão do Comprovante</h4>
+    </section>
+    <section v-else-if="this.QRCodegerado">
+      <h1>Scaneie a tela</h1>
     </section>
   </section>
 
@@ -74,27 +112,52 @@ export default defineComponent({
       inserirOpcao: null,
       pagamentoEfetuado: false,
       loading: false,
+      geraQRCode: false,
+      QRCodegerado: false,
     };
   },
   methods: {
     escolheFormaPagamento(valor) {
       this.formaEscolhida = valor;
+      if (valor === 'Pix') {
+        this.inserirOpcao = true;
+        this.loading = true;
+      }
     },
   },
   watch: {
     formaEscolhida(novoValor) {
-      setTimeout(() => {
-        this.inserirOpcao = true;
-      }, 2000);
+      if (novoValor !== 'Pix')
+        setTimeout(() => {
+          this.inserirOpcao = true;
+        }, 2000);
     },
     inserirOpcao(novoValor) {
-      console.log('mudou inserir');
-      setTimeout(() => {
-        this.loading = true;
-      }, 1500);
+      if (this.formaEscolhida !== 'Pix') {
+        console.log('mudou inserir');
+        setTimeout(() => {
+          this.loading = true;
+        }, 1500);
+      }
     },
     loading(novoValor) {
       console.log('mudou loading');
+      if (this.formaEscolhida !== 'Pix') {
+        setTimeout(() => {
+          this.pagamentoEfetuado = true;
+        }, 3000);
+      } else {
+        setTimeout(() => {
+          this.geraQRCode = true;
+        }, 3000);
+      }
+    },
+    geraQRCode(novoValor) {
+      setTimeout(() => {
+        this.QRCodegerado = true;
+      }, 3000);
+    },
+    QRCodegerado(novoValor) {
       setTimeout(() => {
         this.pagamentoEfetuado = true;
       }, 3000);
