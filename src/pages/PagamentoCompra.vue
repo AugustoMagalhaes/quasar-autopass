@@ -28,6 +28,12 @@
       src="../assets/icone-cartao-removebg-preview.png"
       alt="icone-cartao"
     />
+    <h3
+      v-if="this.formaEscolhida == 'Dinheiro'"
+      style="margin-top: 30px"
+    >
+      Não há devolução de troco
+    </h3>
   </section>
   <section v-else-if="this.formaEscolhida && this.inserirOpcao && this.loading">
     <h1 v-if="!this.pagamentoEfetuado">Aguarde...</h1>

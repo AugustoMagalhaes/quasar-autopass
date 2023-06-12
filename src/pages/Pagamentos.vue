@@ -23,8 +23,15 @@
     <section class="custom-container">
       <section class="valor-container">
         <h2>Digite o Valor:</h2>
-        <div>R$ {{ this.precoDisplay === 'custom' ? 0 : this.precoDisplay }}</div>
-        <button @click="confirmaPreco()">Confirmar</button>
+        <div class="display-valor">
+          R$ {{ this.precoDisplay === 'custom' ? 0 : this.precoDisplay }}
+        </div>
+        <button
+          @click="confirmaPreco()"
+          class="confirmar"
+        >
+          Confirmar
+        </button>
       </section>
       <section class="inputs-container">
         <button
@@ -182,7 +189,7 @@ export default defineComponent({
     preco(novoValor) {
       console.log('novo Preco: ', novoValor);
 
-      if (novoValor !== null) {
+      if (novoValor !== null && novoValor !== 'custom') {
         setTimeout(() => {
           this.$router.push({
             name: 'pagamento',
