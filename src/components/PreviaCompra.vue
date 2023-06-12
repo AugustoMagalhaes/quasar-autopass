@@ -1,5 +1,8 @@
 <template>
-  <section class="pagamento-container">
+  <section
+    class="pagamento-container"
+    v-if="this.$route.params.tipoPagamento !== 'unitario'"
+  >
     <h1>Insira seu {{ tipoPagamento }}</h1>
     <img
       src="../assets/icone-cartao-removebg-preview.png"

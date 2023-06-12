@@ -3,7 +3,9 @@
     class="pagamento-container"
     v-if="this.formaEscolhida == null"
   >
-    <h1 style="margin-bottom: 20px">Selecione uma forma de pagamento</h1>
+    <h1 style="margin-bottom: 20px; text-align: center">
+      Selecione uma forma de pagamento
+    </h1>
     <section class="formas-pagamento-container">
       <button
         v-for="item in formasPagamento"

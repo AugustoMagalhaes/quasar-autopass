@@ -1,7 +1,27 @@
 <template>
   <section
+    v-if="this.$route.params.tipoPagamento === 'unitario'"
     class="pagamentos-container"
-    v-if="!isNaN(this.preco)"
+  >
+    <h1 style="margin-bottom: 30px">Selecione a Opção</h1>
+    <div class="precos-container">
+      <button
+        class="botao-preco"
+        @click="updatePrice(10)"
+      >
+        Unitário
+      </button>
+      <button
+        class="botao-preco"
+        @click="updatePrice(20)"
+      >
+        Ida e Volta
+      </button>
+    </div>
+  </section>
+  <section
+    class="pagamentos-container"
+    v-else-if="!isNaN(this.preco)"
   >
     <h1 style="margin-bottom: 20px">Selecione um Valor</h1>
     <section class="precos-container">
@@ -16,6 +36,7 @@
       </button>
     </section>
   </section>
+
   <section
     v-else
     class=""
@@ -160,7 +181,7 @@ export default defineComponent({
       } else {
         const casasDecimais =
           this.precoDisplay.includes('.') && this.precoDisplay.split('.')[1];
-        console.log('OIA AS CASAS DCIMAIS: ', casasDecimais);
+
         if (casasDecimais) {
           this.precoDisplay =
             casasDecimais.length < 2
@@ -188,14 +209,14 @@ export default defineComponent({
   watch: {
     preco(novoValor) {
       console.log('novo Preco: ', novoValor);
-
+      console.log('teste ', this.$route.params.tipoPagamento);
       if (novoValor !== null && novoValor !== 'custom') {
         setTimeout(() => {
           this.$router.push({
             name: 'pagamento',
             query: { preco: novoValor },
           });
-        }, 2000);
+        }, 1000);
       }
     },
     precoDisplay(novoValor) {

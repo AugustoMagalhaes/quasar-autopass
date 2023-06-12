@@ -54,7 +54,7 @@ export default defineComponent({
         },
         {
           textoBotao: 'Unitário',
-          novaRota: '/unitário',
+          novaRota: '/compra/unitario',
           tipoPagamento: 'unitario',
         },
       ],

@@ -4,6 +4,7 @@ import IndexPage from '../pages/IndexPage.vue';
 import ProdutosPage from '../pages/Produtos.vue';
 import CompraPage from '../pages/Compra.vue';
 import PagamentoCompra from '../pages/PagamentoCompra.vue';
+import UnitarioPage from '../pages/Unitario.vue';
 
 const routes = [
   {
@@ -38,6 +39,12 @@ const routes = [
         }),
       },
     ],
+  },
+  {
+    path: '/unitario',
+    name: 'unitario',
+    component: MainLayout,
+    children: [{ path: '', component: UnitarioPage }],
   },
 
   // Always leave this as last one,

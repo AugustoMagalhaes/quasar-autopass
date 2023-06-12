@@ -43,8 +43,6 @@ export default {
   },
   methods: {
     redirecionaCompra() {
-      console.log('NOVA ROTA??? ', this.novaRota);
-      console.log('Tipo Pagamento??? ', this.tipoPagamento);
       if (['cartao-top', 'bilhete-unico'].includes(this.tipoPagamento)) {
         this.$router.push({
           name: 'compra',
