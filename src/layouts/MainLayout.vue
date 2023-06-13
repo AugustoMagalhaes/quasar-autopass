@@ -21,17 +21,5 @@ export default defineComponent({
   components: {
     Navbar,
   },
-
-  /* setup() {
-    const leftDrawerOpen = ref(false);
-
-    return {
-      essentialLinks: linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value;
-      },
-    };
-  }, */
 });
 </script>

@@ -14,7 +14,16 @@
       </router-link>
     </h2>
   </section>
-  <footer class="footer">Faça sua recarga pelo App</footer>
+  <footer class="footer">
+    <div>
+      <p style="font-size: 2rem">Faça sua recarga pelo App</p>
+      <img
+        src="../assets/qrcode-exemplo.png"
+        alt="QRCode para recarga"
+        style="width: 200px"
+      />
+    </div>
+  </footer>
 </template>
 
 <style lang="sass">

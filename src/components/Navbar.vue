@@ -1,6 +1,9 @@
 <template>
   <nav class="navbar">
-    <p class="nav-item">Icone?</p>
+    <q-icon
+      name="explore"
+      size="md"
+    />
     <img
       class="nav-item"
       src="../assets/autopass-icon.png"
